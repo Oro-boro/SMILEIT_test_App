@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="bs-component">
+		<div class="jumbotron">
+			<h1 class="display-4">{{response.devices.DeviceName}}</h1>
+			<p class="lead">
+				{% if response.ResponseValue is defined and response.ResponseValue is not null %}
+					<p>Note de : "{{response.ResponseValue}}"</p>
+				{% else %}
+					<p>Vous n'avez pas encore donné d'avis.</p>
+				{% endif %}
+			</p>
+			<hr class="my-4">
+			{% if response.ResponseDate is defined and response.ResponseDate is not null %}
+				<p>
+					Le :
+					{{response.ResponseDate | date ("d/m/Y") }}
+					à
+					{{response.ResponseTime | date ("H:i") }}
+				</p>
+			{% else %}
+				<p></p>
+			{% endif %}
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="{{ path('responses') }}" role="button">Retour</a>
+				<a class="btn btn-info btn-lg" href="{{path("responses_edit", {"id" : response.id}) }}" role="button">Donner son avis</a>
+			</p>
+		</div>
+	</div>
+{% endblock %}

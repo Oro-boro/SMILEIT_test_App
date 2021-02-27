@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{form_start(formResponse)}}
+	<div class="form-group">
+		<label for="">Device</label>
+		<h1>Inserer un avis sur
+			{# {{ devices.vars.devicename }} #}
+		</h1>
+		{{form_widget(formResponse)}}
+		<button type="submit">select</button>
+	</div>
+	{{form_end(formResponse)}}
+
+{% endblock %}

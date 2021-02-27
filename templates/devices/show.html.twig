@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<articles>
+		<h2>{{device.DeviceName}}</h2>
+		<h3>{{device.DeviceMac}}</h3>
+		<a href="{{path("devices_edit", {"id" : device.id}) }}" class="btn btn-primary">Modifier</a>
+	</articles>
+{% endblock %}

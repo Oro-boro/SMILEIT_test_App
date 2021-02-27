@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des Devices
+{% endblock %}
+
+{% block body %}
+	<h1 id="tables">
+		<a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+		Liste
+	</h1>
+	<div class="bs-docs-section">
+
+		<div class="row">
+			{% for response in responses %}
+				<div class="col-lg-4">
+					<div class="bs-component">
+						<div class="card mb-3">
+							<a href="{{path("responses_show", {"id" : response.id}) }}" class="btn btn-outline-info">
+								<h3>{{response.devices.DeviceName}}</h3>
+							</a>
+							<div class="card-body">
+								<h5 class="card-title">"Description"</h5>
+								{% if response.ResponseValue is defined and response.ResponseValue is not null %}
+									<h6 class="card-subtitle text-muted">
+										<p>Note	: "{{response.ResponseValue}}"</p>
+									</h6>
+								{% else %}
+									<h6 class="card-subtitle text-muted">
+										<p>Vous n'avez pas encore donné votre avis );</p>
+									</h6>
+								{% endif %}
+
+							</div>
+							<svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveaspectratio="xMidYMid slice" viewbox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+								<rect width="100%" height="100%" fill="#868e96"></rect>
+								<text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+							</svg>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<p>Vous n'avez pas encore donné d'avis</p>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}

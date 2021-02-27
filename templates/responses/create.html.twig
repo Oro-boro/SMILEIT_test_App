@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{form_start(formResponse)}}
+	<div class="jumbotron">
+		{{form_start(formResponse)}}
+		<h1>
+			{{response.devices.DeviceName}}
+		</h1>
+		<div class="form-group">
+			<label for "">Valeur :</label>
+			{{ form_widget(formResponse.ResponseValue)}}
+		</div>
+		<a href="{{ path('responses') }}" class="btn btn-primary">Retour</a>
+		<button class="btn btn-info" type="submit">Go</button>
+		{{form_end(formResponse)}}
+	</div>
+{% endblock %}
