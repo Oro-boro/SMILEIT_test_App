@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Devices;
 use App\Entity\Responses;
 use App\Repository\DevicesRepository;
+use App\Repository\ResponsesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,18 +15,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DevicesController extends AbstractController
 {
     /**
-     * @Route("/devices", name="devices")
+     * @Route("/administration", name="devices")
      */
-    public function devices(DevicesRepository $devicesRepository): Response
+    public function devices(DevicesRepository $devicesRepository, ResponsesRepository $responsesRepository): Response
     {
         return $this->render('devices/devices.html.twig', [
             'devices' => $devicesRepository->findAll(),
+            'responses' => $responsesRepository->findAll()
         ]);
     }
 
     /**
-     * @Route("/devices/create", name="devices_create", methods={"GET", "POST"})
-     * @Route("/devices/{id}/edit", name="devices_edit")
+     * @Route("/administration/create", name="devices_create", methods={"GET", "POST"})
+     * @Route("/administration/{id}/edit", name="devices_edit")
      */
     public function form(Devices $device = null, Request $request): Response
     {
@@ -59,7 +61,7 @@ class DevicesController extends AbstractController
     }
 
     /**
-     * @Route("/devices/{id}", name="devices_show", methods={"GET"})
+     * @Route("/administration/{id}", name="devices_show", methods={"GET"})
      */
     public function show(Devices $devices)
     {
@@ -67,9 +69,9 @@ class DevicesController extends AbstractController
     }
 
     /**
-     * @Route("/device/{id}", name="devices_delete", methods={"DELETE"})
+     * @Route("/administration/{id}", name="devices_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Devices $device): Response
+    public function delete(Request $request, Devices $device)
     {
         if ($this->isCsrfTokenValid('delete' . $device->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

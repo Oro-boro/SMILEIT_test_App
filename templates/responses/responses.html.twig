@@ -1,26 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Liste des Devices
+	Liste des appareils
 {% endblock %}
 
 {% block body %}
-	<h1 id="tables">
-		<a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
-		Liste
-	</h1>
-	<div class="bs-docs-section">
-
+	<div class="bs-docs-section" style="padding:1.5rem">
+		<h3 id="tables" style="padding-bottom:1rem">
+			Liste des appareils
+		</h3>
 		<div class="row">
 			{% for response in responses %}
 				<div class="col-lg-4">
 					<div class="bs-component">
 						<div class="card mb-3">
 							<a href="{{path("responses_show", {"id" : response.id}) }}" class="btn btn-outline-info">
-								<h3>{{response.devices.DeviceName}}</h3>
+								<h3>
+									<img src="{{ asset ('build/images/0.png') }}">
+									Evaluer
+									<img src="{{ asset ('build/images/2.png') }}">
+								</h3>
 							</a>
 							<div class="card-body">
-								<h5 class="card-title">"Description"</h5>
+								<h4 class="card-title text-success">{{response.devices.DeviceName}}</h4>
 								{% if response.ResponseValue is defined and response.ResponseValue is not null %}
 									<h6 class="card-subtitle text-muted">
 										<p>Note	: "{{response.ResponseValue}}"</p>
@@ -43,6 +45,6 @@
 				<p>Vous n'avez pas encore donné d'avis</p>
 			{% endfor %}
 		</div>
-
+		<a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
 	</div>
 {% endblock %}

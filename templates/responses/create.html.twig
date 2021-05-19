@@ -2,17 +2,29 @@
 
 {% block body %}
 	{{form_start(formResponse)}}
-	<div class="jumbotron">
-		{{form_start(formResponse)}}
-		<h1>
-			{{response.devices.DeviceName}}
-		</h1>
-		<div class="form-group">
-			<label for "">Valeur :</label>
-			{{ form_widget(formResponse.ResponseValue)}}
+
+	<fieldset style="padding-left:2rem; padding-top:1rem;">
+		<h2>{{response.devices.DeviceName}}</h2>
+		<div class="form-group row" style="padding-bottom:2rem; padding-top:1rem;">
+			<div class="form-group">
+				<h5>
+					0 =
+					<img src="{{ asset ('build/images/2.png') }}"></h5>
+				<h5>
+					1 =
+					<img src="{{ asset ('build/images/1.png') }}"></h5>
+				<h5>
+					2 =
+					<img src="{{ asset ('build/images/0.png') }}"></h5>
+			</div>
+			<div class="form-group">
+				<label for "">Valeur : &emsp;</label>
+				{{ form_widget(formResponse.ResponseValue)}}
+			</div>
 		</div>
-		<a href="{{ path('responses') }}" class="btn btn-primary">Retour</a>
-		<button class="btn btn-info" type="submit">Go</button>
-		{{form_end(formResponse)}}
-	</div>
+		<a href="{{ path('responses') }}" class="btn btn-primary btn-sm">Retour</a>
+		<button class="btn btn-info btn-sm" type="submit">Je valide !</button>
+	</fieldset>
+
+	{{form_end(formResponse)}}
 {% endblock %}

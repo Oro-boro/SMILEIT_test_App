@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="jumbotron">
-		{{form_start(formResponse)}}
-		<div class="form-group">
-			<label for "">Nom :</label>
-			{{ form_widget(formResponse.DeviceName)}}
-		</div>
-		<div class="form-group">
-			<label for "">Mac Adress :</label>
-			{{ form_widget(formResponse.DeviceMac)}}
-		</div>
-		<a href="{{ path('devices') }}" class="btn btn-primary">Retour</a>
-		<button class="btn btn-info" type="submit">Ajouter</button>
 
-		{{form_end(formResponse)}}
-	</div>
+	{{form_start(formResponse)}}
+	<fieldset style="padding-left:2rem">
+		<legend>Legend</legend>
+
+		<div class="form-group row" style="padding-bottom:2rem;">
+			<div class="form-group">
+				<label class="form-label mt-4">Nom : &emsp; &emsp; &thinsp;</label>
+				{{ form_widget(formResponse.DeviceName)}}
+			</div>
+			<div class="form-group">
+				<label class="form-label mt-4">Mac Adress :&thinsp;</label>
+				{{ form_widget(formResponse.DeviceMac)}}
+			</div>
+		</div>
+
+		<a href="{{ path('devices') }}" class="btn btn-primary btn-sm">Retour</a>
+		<button class="btn btn-light btn-sm" type="submit">Valider</button>
+	</fieldset>
+	{{form_end(formResponse)}}
+
 {% endblock %}
